@@ -10,9 +10,9 @@ She uses this kata as part of her work as a [technical coach](https://leanpub.co
 
 ## How to use this Kata
 
-The simplest way is to just clone the code and start hacking away improving the design. You'll want to look at the ["Gilded Rose Requirements"](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/GildedRoseRequirements.txt) which explains what the code is for. It's strongly recommended that you'll write some tests if you want to make sure you don't break the code while you refactor.
+The simplest way is to just clone the code and start hacking away improving the design. You'll want to look at the ["Gilded Rose Requirements"](https://github.com/costa-amore/Gilded_Rose_kata/blob/master/Gilded_Rose_behavior/Gilded_Rose_requirements.txt) which explains what the code is for. It's strongly recommended that you'll write some tests if you want to make sure you don't break the code while you refactor.
 
-You could write some unit tests yourself, using the requirements to identify suitable test cases. You can start with the provided failing unit test in a popular test framework as a starting point.
+You could write some unit tests yourself, using the requirements to identify suitable test cases. You can start with the provided failing unit test as a starting point.
 
 Alternatively, use the "Text-Based" tests provided in this repository. (Read more about that in the next section)
 
