@@ -1,11 +1,18 @@
-﻿namespace GildedRose
+﻿using System.Text.Json;
+
+namespace GildedRose
 {
     public class GildedRoseApp
     {
-        IList<Item> Items;
-        public GildedRoseApp(IList<Item> Items)
+        public IList<Item> Items = new List<Item>();
+
+        public GildedRoseApp()
         {
-            this.Items = Items;
+            using (StreamReader r = new StreamReader("Stock.json"))
+            {
+                string json = r.ReadToEnd();
+                Items = JsonSerializer.Deserialize<List<Item>>(json)!;
+            }
         }
 
         public void UpdateQuality()

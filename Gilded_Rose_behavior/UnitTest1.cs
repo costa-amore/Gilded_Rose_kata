@@ -7,11 +7,14 @@ namespace Gilded_Rose_behavior
         [Test]
         public void foo()
         {
-            IList<Item> Items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 0 } };
-            GildedRoseApp app = new GildedRoseApp(Items);
+            //given
+            GildedRoseApp app = new GildedRoseApp();
+            
+            //when
             app.UpdateQuality();
 
-            Assert.AreEqual("fixme", Items[0].Name);
+            //then
+            Assert.AreEqual("fixme", app.Items[0].Name);
         }
     }
 }
