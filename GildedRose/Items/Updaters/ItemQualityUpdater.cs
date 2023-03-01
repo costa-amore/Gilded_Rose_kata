@@ -21,7 +21,11 @@
         }
         internal void Reduce()
         {
-            if (CanReduceQuality()) { item.Quality -= 1; }
+            ReduceBy(1);
+        }
+        internal void ReduceBy(int reduction)
+        {
+            if (CanReduceQuality()) { item.Quality -= reduction; }
         }
 
         #region private parts

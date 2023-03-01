@@ -19,6 +19,7 @@ namespace GildedRose.Items
             if (item.Name.Contains("Sulfuras")) return new LegendaryItem(item);
             if (item.Name.Contains("concert")) return new EventItem(item);
             if (item.Name.Contains("Brie")) return new WellAgingItem(item);
+            if (item.Name.Contains("Conjured")) return new ConjuredItem(item);
 
             return new DecayingItem(item);
 
