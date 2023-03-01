@@ -1,20 +1,15 @@
-﻿using GildedRose.Items;
-using GildedRose;
+﻿using GildedRose;
 
 namespace Gilded_Rose_behavior.UpdateStock
 {
     public class For_decaying_items_should
     {
-
         [Test]
         public void Decrease_sellIn_and_quality_by_1()
-        {
-            //given
+        {   //given
             var sellinValue = 1;
             var qualityValue = 1;
-            GildedRoseApp app = new(new List<Item>{
-                new Item { Name ="test", Quality = qualityValue, SellIn = sellinValue }
-            });
+            GildedRoseApp app = Setup.App("test", qualityValue, sellinValue);
 
             //when
             app.UpdateQuality();
@@ -29,12 +24,9 @@ namespace Gilded_Rose_behavior.UpdateStock
 
         [Test]
         public void Decrease_quality_twice_as_fast_after_sell_by_date_has_passed()
-        {
-            //given
+        {   //given
             var qualityValue = 10;
-            GildedRoseApp app = new(new List<Item>{
-                new Item { Name ="test", Quality = qualityValue, SellIn = 0 }
-            });
+            GildedRoseApp app = Setup.App("test", qualityValue, 0);
 
             //when
             app.UpdateQuality();
@@ -46,11 +38,8 @@ namespace Gilded_Rose_behavior.UpdateStock
         [TestCase(0, 1)]
         [TestCase(0, 0)]
         public void Never_decrease_the_quality_below_zero(int quality, int sellin)
-        {
-            //given
-            GildedRoseApp app = new(new List<Item>{
-                new Item { Name ="test", Quality = quality, SellIn = sellin }
-            });
+        {   //given
+            GildedRoseApp app = Setup.App("test", quality, sellin );
 
             //when
             app.UpdateQuality();
@@ -58,6 +47,5 @@ namespace Gilded_Rose_behavior.UpdateStock
             //then
             Assert.That(app.Items[0].Quality, Is.EqualTo(0));
         }
-
     } 
 }

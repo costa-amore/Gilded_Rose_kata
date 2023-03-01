@@ -1,19 +1,14 @@
-﻿using GildedRose.Items;
-using GildedRose;
+﻿using GildedRose;
 
 namespace Gilded_Rose_behavior.UpdateStock
 {
     public class For_well_aging_items_should
     {
-
         [Test]
         public void Increase_quality_of_well_aging_items_twice_as_fast_after_sell_by_date_has_passed()
-        {
-            //given
+        {   //given
             var qualityValue = 10;
-            GildedRoseApp app = new(new List<Item>{
-                    new Item { Name ="Brie", Quality = qualityValue, SellIn = 0 }
-                });
+            GildedRoseApp app = Setup.App("Brie", qualityValue, 0 );
 
             //when
             app.UpdateQuality();
@@ -25,12 +20,9 @@ namespace Gilded_Rose_behavior.UpdateStock
 
         [Test]
         public void Never_increase_quality_beyond_50()
-        {
-            //given
+        {   //given
             var qualityValue = 50;
-            GildedRoseApp app = new(new List<Item>{
-                new Item { Name ="Aged Brie", Quality = qualityValue, SellIn = 5 }
-            });
+            GildedRoseApp app = Setup.App("Aged Brie", qualityValue, 5);
 
             //when
             app.UpdateQuality();
@@ -43,12 +35,9 @@ namespace Gilded_Rose_behavior.UpdateStock
         [TestCase("Aged Brie")]
         [TestCase("Backstage passes to a TAFKAL80ETC concert")]
         public void Increase_quality_of_well_aging_items(string itemName)
-        {
-            //given
+        {   //given
             var qualityValue = 10;
-            GildedRoseApp app = new(new List<Item>{
-                new Item { Name = itemName, Quality = qualityValue, SellIn = 11 }
-            });
+            GildedRoseApp app = Setup.App(itemName, qualityValue, 11 );
 
             //when
             app.UpdateQuality();
@@ -56,7 +45,5 @@ namespace Gilded_Rose_behavior.UpdateStock
             //then
             Assert.That(app.Items[0].Quality, Is.EqualTo(qualityValue + 1));
         }
-
     }
 }
-

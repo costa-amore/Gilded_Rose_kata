@@ -9,12 +9,9 @@ namespace Gilded_Rose_behavior.UpdateStock
         [TestCase(0)]
         [TestCase(-1)]
         public void Never_affect_legendary_items(int sellinValue)
-        {
-            //given
+        {   //given
             var qualityValue = 80;
-            GildedRoseApp app = new(new List<Item>{
-                new Item { Name ="Sulfuras, Hand of Ragnaros", Quality = qualityValue, SellIn = sellinValue }
-            });
+            GildedRoseApp app = Setup.App("Sulfuras, Hand of Ragnaros", qualityValue, sellinValue);
 
             //when
             app.UpdateQuality();

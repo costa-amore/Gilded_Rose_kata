@@ -11,12 +11,9 @@ namespace Gilded_Rose_behavior.UpdateStock
         [TestCase(5, 3)]
         [TestCase(1, 3)]
         public void Increase_quality_exponentially_of_event_type_items(int sellinValue, int valueIncrease)
-        {
-            //given
+        {   //given
             var qualityValue = 10;
-            GildedRoseApp app = new(new List<Item>{
-                new Item { Name ="Backstage passes to a TAFKAL80ETC concert", Quality = qualityValue, SellIn = sellinValue }
-            });
+            GildedRoseApp app = Setup.App("Backstage passes to a TAFKAL80ETC concert", qualityValue, sellinValue );
 
             //when
             app.UpdateQuality();
@@ -28,11 +25,8 @@ namespace Gilded_Rose_behavior.UpdateStock
         [TestCase(0)]
         [TestCase(-1)]
         public void Drop_quality_to_ZERO_for_events_in_the_past(int sellinValue)
-        {
-            //given
-            GildedRoseApp app = new(new List<Item>{
-                new Item { Name ="Backstage passes to a TAFKAL80ETC concert", Quality = 10, SellIn = sellinValue }
-            });
+        {   //given
+            GildedRoseApp app = Setup.App("Backstage passes to a TAFKAL80ETC concert", 10, sellinValue );
 
             //when
             app.UpdateQuality();
@@ -40,6 +34,5 @@ namespace Gilded_Rose_behavior.UpdateStock
             //then
             Assert.That(app.Items[0].Quality, Is.EqualTo(0));
         }
-
     }
 }
