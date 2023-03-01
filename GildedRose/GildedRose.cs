@@ -5,86 +5,84 @@ namespace GildedRose
     public class GildedRoseApp
     {
         public IList<Item> Items = new List<Item>();
+        private readonly Stock _stock;
 
-        public GildedRoseApp()
-        {
-            using (StreamReader r = new StreamReader("Stock.json"))
-            {
-                string json = r.ReadToEnd();
-                Items = JsonSerializer.Deserialize<List<Item>>(json)!;
-            }
+        public GildedRoseApp(IList<Item> items)
+        {   
+            Items = items;
+            _stock = new Stock(items); 
         }
-
+       
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            for (var i = 0; i < _stock.Count; i++)
             {
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (_stock._typedItems[i].Name != "Aged Brie" && _stock._typedItems[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    if (Items[i].Quality > 0)
+                    if (_stock._typedItems[i].Quality > 0)
                     {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                        if (_stock._typedItems[i].Name != "Sulfuras, Hand of Ragnaros")
                         {
-                            Items[i].Quality = Items[i].Quality - 1;
+                            _stock._typedItems[i].UpdateQuality(- 1);
                         }
                     }
                 }
                 else
                 {
-                    if (Items[i].Quality < 50)
+                    if (_stock._typedItems[i].Quality < 50)
                     {
-                        Items[i].Quality = Items[i].Quality + 1;
+                        _stock._typedItems[i].UpdateQuality(+ 1);
 
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (_stock._typedItems[i].Name == "Backstage passes to a TAFKAL80ETC concert")
                         {
-                            if (Items[i].SellIn < 11)
+                            if (_stock._typedItems[i].SellIn < 11)
                             {
-                                if (Items[i].Quality < 50)
+                                if (_stock._typedItems[i].Quality < 50)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    _stock._typedItems[i].UpdateQuality(+ 1);
                                 }
                             }
 
-                            if (Items[i].SellIn < 6)
+                            if (_stock._typedItems[i].SellIn < 6)
                             {
-                                if (Items[i].Quality < 50)
+                                if (_stock._typedItems[i].Quality < 50)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    _stock._typedItems[i].UpdateQuality(+ 1);
                                 }
                             }
                         }
                     }
                 }
 
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                if (_stock._typedItems[i].Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    Items[i].SellIn = Items[i].SellIn - 1;
+                    _stock._typedItems[i].UpdateSellIn(- 1);
                 }
 
-                if (Items[i].SellIn < 0)
+                if (_stock._typedItems[i].SellIn < 0)
                 {
-                    if (Items[i].Name != "Aged Brie")
+                    if (_stock._typedItems[i].Name != "Aged Brie")
                     {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                        if (_stock._typedItems[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                         {
-                            if (Items[i].Quality > 0)
+                            if (_stock._typedItems[i].Quality > 0)
                             {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                                if (_stock._typedItems[i].Name != "Sulfuras, Hand of Ragnaros")
                                 {
-                                    Items[i].Quality = Items[i].Quality - 1;
+                                    _stock._typedItems[i].UpdateQuality(- 1);
                                 }
                             }
                         }
                         else
                         {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
+                            _stock._typedItems[i].UpdateQuality(-_stock._typedItems[i].Quality);
                         }
                     }
                     else
                     {
-                        if (Items[i].Quality < 50)
+                        if (_stock._typedItems[i].Quality < 50)
                         {
-                            Items[i].Quality = Items[i].Quality + 1;
+                            _stock._typedItems[i].UpdateQuality(+ 1);
                         }
                     }
                 }

@@ -16,4 +16,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Stock copy.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
