@@ -1,7 +1,7 @@
 ﻿using GildedRose.Items;
 using GildedRose;
 
-namespace Gilded_Rose_behavior.UpdateStock
+namespace Gilded_Rose_behavior.Update_stock
 {
     public static class Setup
     {

@@ -2,7 +2,7 @@
 using ApprovalTests;
 using ApprovalTests.Reporters;
 
-namespace Gilded_Rose_behavior.golden_master
+namespace Gilded_Rose_behavior.Golden_master
 {
     internal class ApprovalTests
     {

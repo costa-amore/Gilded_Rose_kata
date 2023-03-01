@@ -1,6 +1,6 @@
 ﻿using GildedRose;
 
-namespace Gilded_Rose_behavior.UpdateStock
+namespace Gilded_Rose_behavior.Update_stock
 {
     public class For_decaying_items_should
     {

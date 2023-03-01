@@ -1,6 +1,6 @@
 ﻿using GildedRose;
 
-namespace Gilded_Rose_behavior.UpdateStock
+namespace Gilded_Rose_behavior.Update_stock
 {
     internal class For_conjured_items_should
     {
