@@ -1,5 +1,4 @@
-﻿using GildedRose.Items;
-using GildedRose;
+﻿using GildedRose;
 
 namespace Gilded_Rose_behavior.Update_stock
 {

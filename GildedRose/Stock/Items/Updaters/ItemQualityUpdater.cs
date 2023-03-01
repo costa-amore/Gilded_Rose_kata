@@ -1,4 +1,4 @@
-﻿namespace GildedRose.Items.Updaters
+﻿namespace GildedRose.Stock.Items.Updaters
 {
     internal class ItemQualityUpdater
     {

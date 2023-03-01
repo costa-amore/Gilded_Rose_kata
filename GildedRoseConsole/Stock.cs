@@ -1,4 +1,4 @@
-﻿using GildedRose.Items;
+﻿using GildedRose;
 using System.Text.Json;
 
 namespace GildedRoseConsole

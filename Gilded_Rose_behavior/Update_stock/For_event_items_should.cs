@@ -1,6 +1,4 @@
 using GildedRose;
-using GildedRose.Items;
-
 namespace Gilded_Rose_behavior.Update_stock
 { 
     public class For_event_items_should

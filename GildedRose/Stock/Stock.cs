@@ -1,6 +1,7 @@
 ﻿using System.Collections;
+using GildedRose.Stock.Items;
 
-namespace GildedRose.Items
+namespace GildedRose.Stock
 {
     internal class Stock : IEnumerable<TypedItem>
     {

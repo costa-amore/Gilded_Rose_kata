@@ -1,4 +1,4 @@
-﻿namespace GildedRose.Items
+﻿namespace GildedRose.Stock.Items
 {
     internal class LegendaryItem : TypedItem
     {

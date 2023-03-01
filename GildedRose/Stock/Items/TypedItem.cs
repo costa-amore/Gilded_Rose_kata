@@ -1,6 +1,6 @@
-﻿using GildedRose.Items.Updaters;
+﻿using GildedRose.Stock.Items.Updaters;
 
-namespace GildedRose.Items
+namespace GildedRose.Stock.Items
 {
     internal abstract class TypedItem
     {
