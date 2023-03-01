@@ -1,4 +1,4 @@
-﻿namespace GildedRose
+﻿namespace GildedRose.Items
 {
     public class Item
     {
@@ -8,7 +8,7 @@
 
         public override string ToString()
         {
-            return this.Name + ", " + this.SellIn + ", " + this.Quality;
+            return Name + ", " + SellIn + ", " + Quality;
         }
     }
 }

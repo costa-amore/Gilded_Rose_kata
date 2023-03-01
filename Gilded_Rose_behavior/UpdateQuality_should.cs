@@ -1,5 +1,5 @@
 using GildedRose;
-
+using GildedRose.Items;
 
 namespace Gilded_Rose_behavior.for_event_items
 {

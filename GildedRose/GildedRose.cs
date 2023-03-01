@@ -1,9 +1,10 @@
-﻿using System.Text.Json;
-
+﻿using GildedRose.Items;
+    
 namespace GildedRose
 {
     public class GildedRoseApp
     {
+        #region construction
         public IList<Item> Items = new List<Item>();
         private readonly Stock _stock;
 
@@ -12,13 +13,11 @@ namespace GildedRose
             Items = items;
             _stock = new Stock(items); 
         }
-       
+        #endregion
+
         public void UpdateQuality()
         {
-            foreach (var item in _stock)
-            {
-                item.Update();
-            }
+            _stock.Update();
         }
     }
 }
