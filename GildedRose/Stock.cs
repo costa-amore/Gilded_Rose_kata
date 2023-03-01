@@ -10,7 +10,7 @@ namespace GildedRose
         {
             foreach (var item in items)
             {
-                _typedItems.Add(new TypedItem(item));
+                _typedItems.Add(TypedItem.Of(item));
             }
         }
         public int Count { get { return _typedItems.Count; } }

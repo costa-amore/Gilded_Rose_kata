@@ -1,37 +1,33 @@
 ﻿namespace GildedRose
 {
-    internal class LegendaryItem : TypedItem
-    {
-        public LegendaryItem(Item item) : base(item)
-        {
-        }
 
+    enum ItemType
+    {
+        decaying,
+        legendary,
+        wellAging,
+        eventItem
     }
-    internal class TypedItem
+
+    internal abstract class TypedItem
     {
         private readonly Item item;
-        private readonly ItemType type;
+        protected readonly ItemType type;
 
-        public TypedItem(Item item)
+        protected TypedItem(Item item, ItemType type)
         {
             this.item = item;
-            type = DefineTypeOf(item);
+            this.type = type;
         }
 
         public static TypedItem Of(Item item)
         {
             if (item.Name.Contains("Sulfuras")) return new LegendaryItem(item);
+            if (item.Name.Contains("concert")) return new EventItem(item);
+            if (item.Name.Contains("Brie")) return new WellAgingItem(item);
 
-            return new TypedItem(item);
+            return new DecayingItem(item);
 
-        }
-        private static ItemType DefineTypeOf(Item item)
-        {
-            if (item.Name.Contains("Sulfuras")) return ItemType.legendary;
-            if (item.Name.Contains("concert"))  return ItemType.eventItem;
-            if (item.Name.Contains("Brie"))     return ItemType.wellAging;
-
-            return ItemType.decaying;
         }
 
         public string Name { get { return item.Name; } }
@@ -54,14 +50,236 @@
         {
             item.SellIn += updateSellInWith;
         }
+
+        public abstract void Update();
+ 
     }
 
-
-    enum ItemType
+    internal class DecayingItem : TypedItem
     {
-        decaying,
-        legendary,
-        wellAging,
-        eventItem
+        public DecayingItem(Item item) : base(item, ItemType.decaying)
+        {
+        }
+
+        public override void Update()
+        {
+            if (Name != "Aged Brie" && Name != "Backstage passes to a TAFKAL80ETC concert")
+            {
+                if (Quality > 0)
+                {
+                    UpdateQuality(-1);
+                }
+            }
+            else
+            {
+                if (Quality < 50)
+                {
+                    UpdateQuality(+1);
+
+                    if (Name == "Backstage passes to a TAFKAL80ETC concert")
+                    {
+                        if (SellIn < 11)
+                        {
+                            if (Quality < 50)
+                            {
+                                UpdateQuality(+1);
+                            }
+                        }
+
+                        if (SellIn < 6)
+                        {
+                            if (Quality < 50)
+                            {
+                                UpdateQuality(+1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            UpdateSellIn(-1);
+
+            if (SellIn < 0)
+            {
+                if (Name != "Aged Brie")
+                {
+                    if (Name != "Backstage passes to a TAFKAL80ETC concert")
+                    {
+                        if (Quality > 0)
+                        {
+                            UpdateQuality(-1);
+                        }
+                    }
+                    else
+                    {
+                        UpdateQuality(-Quality);
+                    }
+                }
+                else
+                {
+                    if (Quality < 50)
+                    {
+                        UpdateQuality(+1);
+                    }
+                }
+            }
+        }
+
     }
+
+    internal class WellAgingItem : TypedItem
+    {
+        public WellAgingItem(Item item): base(item, ItemType.wellAging)
+        {
+        }
+
+        public override void Update()
+        {
+            if (Name != "Aged Brie" && Name != "Backstage passes to a TAFKAL80ETC concert")
+            {
+                if (Quality > 0)
+                {
+                    UpdateQuality(-1);
+                }
+            }
+            else
+            {
+                if (Quality < 50)
+                {
+                    UpdateQuality(+1);
+
+                    if (Name == "Backstage passes to a TAFKAL80ETC concert")
+                    {
+                        if (SellIn < 11)
+                        {
+                            if (Quality < 50)
+                            {
+                                UpdateQuality(+1);
+                            }
+                        }
+
+                        if (SellIn < 6)
+                        {
+                            if (Quality < 50)
+                            {
+                                UpdateQuality(+1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            UpdateSellIn(-1);
+
+            if (SellIn < 0)
+            {
+                if (Name != "Aged Brie")
+                {
+                    if (Name != "Backstage passes to a TAFKAL80ETC concert")
+                    {
+                        if (Quality > 0)
+                        {
+                            UpdateQuality(-1);
+                        }
+                    }
+                    else
+                    {
+                        UpdateQuality(-Quality);
+                    }
+                }
+                else
+                {
+                    if (Quality < 50)
+                    {
+                        UpdateQuality(+1);
+                    }
+                }
+            }
+        }
+
+    }
+
+    internal class LegendaryItem : TypedItem
+    {
+        public LegendaryItem(Item item) : base(item, ItemType.legendary)
+        {
+        }
+
+        public override void Update()
+        {
+            return;
+        }
+    }
+    
+    internal class EventItem : TypedItem
+    {
+        public EventItem(Item item) : base(item, ItemType.eventItem)
+        {
+        }
+
+        public override void Update()
+        {
+            if (Name != "Aged Brie" && Name != "Backstage passes to a TAFKAL80ETC concert")
+            {
+                if (Quality > 0)
+                {
+                    UpdateQuality(-1);
+                }
+            }
+            else
+            {
+                if (Quality < 50)
+                {
+                    UpdateQuality(+1);
+
+                    if (Name == "Backstage passes to a TAFKAL80ETC concert")
+                    {
+                        if (SellIn < 11)
+                        {
+                            if (Quality < 50)
+                            {
+                                UpdateQuality(+1);
+                            }
+                        }
+
+                        if (SellIn < 6)
+                        {
+                            if (Quality < 50)
+                            {
+                                UpdateQuality(+1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            UpdateSellIn(-1);
+
+            if (SellIn < 0)
+            {
+                if (Name != "Aged Brie")
+                {
+                    if (Name != "Backstage passes to a TAFKAL80ETC concert")
+                    {
+                        if (Quality > 0)
+                        {
+                            UpdateQuality(-1);
+                        }
+                    }
+                    else
+                    {
+                        UpdateQuality(-Quality);
+                    }
+                }
+                else
+                {
+                    if (Quality < 50)
+                    {
+                        UpdateQuality(+1);
+                    }
+                }
+            }
+        }
+    }
+
 }
